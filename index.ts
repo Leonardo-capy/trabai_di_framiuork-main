@@ -1,6 +1,6 @@
 import mysql, { Connection, ConnectionOptions } from 'mysql2/promise';
 import fastify, { FastifyRequest, FastifyReply } from 'fastify';
-import cors from '@fastify/cors'; import path, { join } from 'path'
+import cors from '@fastify/cors'; import path from 'path'
 import fastifyStatic from '@fastify/static'
 
 const site = fastify()
@@ -59,7 +59,7 @@ site.get('/produto', async (request: FastifyRequest, reply: FastifyReply) => {
 })
 
 site.post('/produto', async (request: FastifyRequest, reply: FastifyReply) => {
-    const { id, nome, preco, vendedor } = request.body as any
+    const { nome, preco, vendedor } = request.body as any;
     try {
         const conn = await mysql.createConnection({
             host: "localhost",
@@ -68,8 +68,19 @@ site.post('/produto', async (request: FastifyRequest, reply: FastifyReply) => {
             database: 'trabalho_catalogo',
             port: 3306
         })
-        const resultado = await conn.query("INSERT INTO produto (id, nome, preco, vendedor) VALUES (?,?,?,?)", [id, nome, preco, vendedor])
-        const [dados, camposTabela] = resultado
+        const [result]: any = await conn.query(
+            "INSERT INTO produto (nome, preco, vendedor) VALUES (?, ?, ?)",
+            [nome, preco, vendedor]
+        );
+        const newId = result.insertId;
+
+        reply.status(200).send({
+            id: newId,
+            nome,
+            preco,
+            vendedor
+        });
+        const [dados, camposTabela] = result
         reply.status(200).send(dados)
     }
     catch (erro: any) {

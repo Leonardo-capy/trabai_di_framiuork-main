@@ -17,18 +17,18 @@
   "devDependencies": {
     "@types/node": "^22.15.12"
   },
-  "name": "trabai-di-framiuork",
+  "name": "trabai-di-framiuork-main",
   "version": "1.0.0",
   "description": "trabalho de frameworks",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Leonardo-capy/trabai_di_framiuork.git"
+    "url": "git+https://github.com/Leonardo-capy/trabai_di_framiuorks-main.git"
   },
   "author": "Leonardo-capy",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Leonardo-capy/trabai_di_framiuork/issues"
+    "url": "https://github.com/Leonardo-capy/trabai_di_framiuorks-main/issues"
   },
-  "homepage": "https://github.com/Leonardo-capy/trabai_di_framiuork#readme"
+  "homepage": "https://github.com/Leonardo-capy/trabai_di_framiuorks-main#readme"
 }
